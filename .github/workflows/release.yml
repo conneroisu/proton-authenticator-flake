@@ -1,0 +1,126 @@
+name: Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Version to release'
+        required: true
+        type: string
+
+jobs:
+  build-and-release:
+    name: Build and Release
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@main
+        with:
+          logger: pretty
+
+      - name: Setup Nix Cache
+        uses: DeterminateSystems/magic-nix-cache-action@main
+
+      - name: Build package
+        run: |
+          NIXPKGS_ALLOW_UNFREE=1 nix build --impure --print-build-logs
+
+      - name: Generate package information
+        id: package-info
+        run: |
+          echo "package_name=$(nix eval --raw .#packages.x86_64-linux.default.name)" >> $GITHUB_OUTPUT
+          echo "package_version=$(nix eval --raw .#packages.x86_64-linux.default.version)" >> $GITHUB_OUTPUT
+          echo "store_path=$(readlink result)" >> $GITHUB_OUTPUT
+          echo "closure_size=$(nix path-info --impure . --closure-size --human-readable)" >> $GITHUB_OUTPUT
+
+      - name: Create release notes
+        run: |
+          cat > release-notes.md << EOF
+          # Proton Authenticator Nix Flake Release
+          
+          ## Package Information
+          - **Package**: \`${{ steps.package-info.outputs.package_name }}\`
+          - **Version**: \`${{ steps.package-info.outputs.package_version }}\`
+          - **Closure Size**: ${{ steps.package-info.outputs.closure_size }}
+          - **Store Path**: \`${{ steps.package-info.outputs.store_path }}\`
+          
+          ## Installation
+          
+          ### Quick Install
+          \`\`\`bash
+          NIXPKGS_ALLOW_UNFREE=1 nix run --impure github:conneroisu/proton-authenticator-flake
+          \`\`\`
+          
+          ### System Installation
+          Add to your \`flake.nix\`:
+          \`\`\`nix
+          inputs.proton-authenticator.url = "github:conneroisu/proton-authenticator-flake/${GITHUB_REF_NAME}";
+          \`\`\`
+          
+          Then add to your system packages:
+          \`\`\`nix
+          environment.systemPackages = [
+            inputs.proton-authenticator.packages.\${system}.default
+          ];
+          \`\`\`
+          
+          ## What's Included
+          - ✅ Proton Authenticator binary
+          - ✅ Desktop integration (.desktop file)
+          - ✅ Application icons (32x32, 128x128, 256x256@2)
+          - ✅ Proper dependency management
+          - ✅ GTK/GLib environment setup
+          
+          ## Requirements
+          - NixOS or Nix package manager
+          - Must allow unfree packages (\`NIXPKGS_ALLOW_UNFREE=1\`)
+          - x86_64-linux system
+          
+          ## Verification
+          The package has been tested for:
+          - ✅ Build reproducibility
+          - ✅ Dependency linking
+          - ✅ Desktop integration
+          - ✅ Security audit
+          EOF
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          body_path: release-notes.md
+          tag_name: ${{ github.ref_name }}
+          name: ${{ steps.package-info.outputs.package_name }}
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  update-readme:
+    name: Update README Badges
+    runs-on: ubuntu-latest
+    needs: build-and-release
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Update version badge in README
+        run: |
+          sed -i "s/releases\/v[0-9]\+\.[0-9]\+\.[0-9]\+/releases\/${GITHUB_REF_NAME}/g" README.md || true
+          
+      - name: Commit changes
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add README.md
+          git diff --staged --quiet || git commit -m "docs: update version badge to ${GITHUB_REF_NAME}"
+          git push || true

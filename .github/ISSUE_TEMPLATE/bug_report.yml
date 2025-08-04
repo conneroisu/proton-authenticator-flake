@@ -1,0 +1,190 @@
+name: 🐛 Bug Report
+description: Report a bug or issue with the Proton Authenticator Nix Flake
+title: "[BUG] "
+labels: ["bug", "needs-triage"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for reporting a bug! Please fill out the information below to help us debug the issue.
+        
+        **🚨 Security Notice**: If this is a security vulnerability, please DO NOT create a public issue. Instead, email connerohnesorge@gmail.com with details.
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Pre-submission Checklist
+      description: Please verify these items before submitting
+      options:
+        - label: I have searched existing issues to ensure this is not a duplicate
+          required: true
+        - label: I have tested with the latest version of the flake
+          required: true
+        - label: This is not a security vulnerability (those should be emailed privately)
+          required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Bug Description
+      description: A clear and concise description of what the bug is
+      placeholder: Describe the bug you encountered...
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to Reproduce
+      description: Detailed steps to reproduce the behavior
+      placeholder: |
+        1. Run command '...'
+        2. See error '...'
+        3. Expected behavior: '...'
+      value: |
+        1. 
+        2. 
+        3. 
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: What you expected to happen
+      placeholder: Describe what should have happened...
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Behavior
+      description: What actually happened
+      placeholder: Describe what actually happened...
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment Information
+      description: Information about your system and environment
+      placeholder: |
+        - OS: [e.g., NixOS 24.05, Ubuntu with Nix]
+        - Nix version: [output of `nix --version`]
+        - System: [e.g., x86_64-linux, aarch64-linux]
+        - Desktop Environment: [e.g., GNOME, KDE, XFCE]
+        - Proton Authenticator version: [from flake]
+      value: |
+        - OS: 
+        - Nix version: 
+        - System: 
+        - Desktop Environment: 
+        - Proton Authenticator version: 
+    validations:
+      required: true
+
+  - type: textarea
+    id: build-command
+    attributes:
+      label: Build Command Used
+      description: The exact command you used to build/run the flake
+      placeholder: |
+        NIXPKGS_ALLOW_UNFREE=1 nix build --impure
+      render: bash
+    validations:
+      required: true
+
+  - type: textarea
+    id: error-output
+    attributes:
+      label: Error Output
+      description: Full error output, logs, or stack traces
+      placeholder: Paste the complete error output here...
+      render: text
+    validations:
+      required: false
+
+  - type: textarea
+    id: build-logs
+    attributes:
+      label: Build Logs
+      description: Relevant build logs if this is a build issue
+      placeholder: |
+        Run with: NIXPKGS_ALLOW_UNFREE=1 nix build --impure --print-build-logs
+        Paste relevant logs here...
+      render: text
+    validations:
+      required: false
+
+  - type: dropdown
+    id: bug-type
+    attributes:
+      label: Bug Type
+      description: What type of issue is this?
+      options:
+        - Build Error
+        - Runtime Error
+        - Installation Issue
+        - Desktop Integration Problem
+        - Documentation Issue
+        - Performance Issue
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: severity
+    attributes:
+      label: Severity
+      description: How severe is this issue?
+      options:
+        - Critical (Application completely unusable)
+        - High (Major functionality broken)
+        - Medium (Some functionality impaired)
+        - Low (Minor issue or inconvenience)
+    validations:
+      required: true
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Add any other context, screenshots, or information about the problem
+      placeholder: Any additional information that might help...
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: troubleshooting
+    attributes:
+      label: Troubleshooting Attempted
+      description: What troubleshooting steps have you already tried?
+      options:
+        - label: Ran `nix flake check` to verify flake integrity
+        - label: Tried building with `--rebuild` flag
+        - label: Checked that `NIXPKGS_ALLOW_UNFREE=1` is set
+        - label: Verified system meets requirements (x86_64-linux)
+        - label: Tested with a fresh git clone
+        - label: Checked GitHub Actions for similar failures
+        - label: Searched existing issues and discussions
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        
+        ### 📋 What Happens Next?
+        
+        1. **Triage**: We'll review and label your issue within 48 hours
+        2. **Investigation**: We'll attempt to reproduce the issue
+        3. **Resolution**: We'll work on a fix or provide a workaround
+        4. **Testing**: You may be asked to test proposed solutions
+        
+        ### 🙏 Thank You!
+        
+        Thank you for taking the time to report this issue. Your feedback helps improve the flake for everyone!

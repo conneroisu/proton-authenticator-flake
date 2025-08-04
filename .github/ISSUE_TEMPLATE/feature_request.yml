@@ -1,0 +1,189 @@
+name: ✨ Feature Request
+description: Suggest a new feature or enhancement for the Proton Authenticator Nix Flake
+title: "[FEATURE] "
+labels: ["enhancement", "needs-triage"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for suggesting a new feature! Please provide as much detail as possible to help us understand your request.
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Pre-submission Checklist
+      description: Please verify these items before submitting
+      options:
+        - label: I have searched existing issues to ensure this hasn't been requested before
+          required: true
+        - label: This feature request is specific to the Nix flake packaging (not the Proton Authenticator app itself)
+          required: true
+        - label: I understand that feature implementation depends on maintainer availability
+          required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or Use Case
+      description: What problem does this feature solve? What use case does it address?
+      placeholder: |
+        Describe the problem you're trying to solve or the use case you want to support.
+        Example: "I want to install Proton Authenticator on aarch64-linux systems but it's currently not supported."
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed Solution
+      description: Describe the feature you'd like to see implemented
+      placeholder: |
+        Describe your proposed solution in detail.
+        Example: "Add support for aarch64-linux by modifying the flake to handle multiple architectures."
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+      description: What alternative solutions have you considered?
+      placeholder: |
+        Describe any alternative approaches you've thought about.
+        Example: "I considered using the AppImage version, but it doesn't integrate well with NixOS."
+    validations:
+      required: false
+
+  - type: dropdown
+    id: feature-type
+    attributes:
+      label: Feature Type
+      description: What type of feature is this?
+      options:
+        - New System Support (e.g., aarch64-linux)
+        - Build Process Improvement
+        - Desktop Integration Enhancement
+        - CI/CD Enhancement
+        - Documentation Improvement
+        - Developer Experience
+        - Performance Optimization
+        - Security Enhancement
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      description: How important is this feature to you?
+      options:
+        - Low (Nice to have)
+        - Medium (Would be helpful)
+        - High (Important for my use case)
+        - Critical (Blocking my usage)
+    validations:
+      required: true
+
+  - type: textarea
+    id: implementation-ideas
+    attributes:
+      label: Implementation Ideas (Optional)
+      description: If you have ideas about how this could be implemented, please share them
+      placeholder: |
+        If you have technical ideas about implementation, please share them here.
+        Example Nix code, architectural suggestions, etc.
+      render: nix
+    validations:
+      required: false
+
+  - type: textarea
+    id: benefits
+    attributes:
+      label: Benefits
+      description: What benefits would this feature provide?
+      placeholder: |
+        Who would benefit from this feature and how?
+        - User benefit: Easier installation process
+        - Maintainer benefit: Automated testing
+        - Community benefit: Better documentation
+    validations:
+      required: true
+
+  - type: textarea
+    id: impact
+    attributes:
+      label: Impact Assessment
+      description: What impact might this have on existing functionality?
+      placeholder: |
+        Consider:
+        - Backward compatibility
+        - Breaking changes
+        - Resource requirements
+        - Maintenance burden
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: complexity
+    attributes:
+      label: Complexity Estimate
+      description: How complex do you think this feature would be to implement?
+      options:
+        - label: Simple (small configuration change)
+        - label: Medium (requires moderate Nix knowledge)
+        - label: Complex (requires significant development)
+        - label: Unsure (I don't know)
+
+  - type: checkboxes
+    id: contribution
+    attributes:
+      label: Contribution Willingness
+      description: Would you be willing to help implement this feature?
+      options:
+        - label: Yes, I can implement this myself
+        - label: Yes, I can help with testing
+        - label: Yes, I can help with documentation
+        - label: Yes, I can provide feedback during development
+        - label: No, I cannot contribute to implementation
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Add any other context, screenshots, or information about the feature request
+      placeholder: |
+        Any additional information that might be helpful:
+        - Links to relevant documentation
+        - Examples from other projects
+        - User scenarios
+        - Screenshots or mockups
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        
+        ### 📋 What Happens Next?
+        
+        1. **Triage**: We'll review and label your request within 48 hours
+        2. **Discussion**: We may ask for clarification or additional details
+        3. **Planning**: If accepted, we'll plan implementation timeline
+        4. **Implementation**: Development will begin based on priority and maintainer availability
+        5. **Testing**: You may be asked to test the implementation
+        
+        ### 🎯 Implementation Priority
+        
+        Features are prioritized based on:
+        - Community benefit and demand
+        - Implementation complexity
+        - Maintainer availability
+        - Alignment with project goals
+        
+        ### 🙏 Thank You!
+        
+        Thank you for taking the time to suggest this feature. Your ideas help make this flake better for everyone!

@@ -1,0 +1,192 @@
+name: ❓ Question or Support
+description: Ask a question about using the Proton Authenticator Nix Flake
+title: "[QUESTION] "
+labels: ["question", "needs-triage"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Have a question about using the Proton Authenticator Nix Flake? We're here to help!
+        
+        **💡 Tip**: Check the [README](https://github.com/conneroisu/proton-authenticator-flake/blob/main/README.md) and [troubleshooting section](https://github.com/conneroisu/proton-authenticator-flake/blob/main/README.md#-troubleshooting) first.
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Pre-submission Checklist
+      description: Please verify these items before submitting
+      options:
+        - label: I have read the README documentation
+          required: true
+        - label: I have checked the troubleshooting section
+          required: true
+        - label: I have searched existing issues and discussions
+          required: true
+        - label: This is not a bug report (use the bug report template for bugs)
+          required: true
+
+  - type: dropdown
+    id: question-type
+    attributes:
+      label: Question Type
+      description: What type of question is this?
+      options:
+        - Installation Help
+        - Configuration Question
+        - Usage Question
+        - NixOS Integration
+        - Home Manager Integration
+        - Troubleshooting Help
+        - Development Question
+        - General Question
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: question
+    attributes:
+      label: Your Question
+      description: What would you like to know?
+      placeholder: |
+        Please ask your question clearly and provide context.
+        
+        Example: "How do I install this flake on a NixOS system with Home Manager?"
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Context and Background
+      description: Provide relevant context for your question
+      placeholder: |
+        Help us understand your situation:
+        - What are you trying to accomplish?
+        - What approach have you tried?
+        - What specific part is confusing?
+        
+        Example: "I'm new to Nix flakes and trying to add Proton Authenticator to my Home Manager configuration."
+    validations:
+      required: true
+
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment Information
+      description: Information about your system (if relevant)
+      placeholder: |
+        - OS: [e.g., NixOS 24.05, Ubuntu with Nix]
+        - Nix version: [output of `nix --version`]
+        - System: [e.g., x86_64-linux]
+        - Desktop Environment: [if relevant]
+      value: |
+        - OS: 
+        - Nix version: 
+        - System: 
+        - Desktop Environment: 
+    validations:
+      required: false
+
+  - type: textarea
+    id: attempted-solutions
+    attributes:
+      label: What Have You Tried?
+      description: What solutions or approaches have you already attempted?
+      placeholder: |
+        Please describe what you've already tried:
+        - Commands you've run
+        - Configurations you've tested
+        - Documentation you've consulted
+        - Error messages you've encountered
+    validations:
+      required: false
+
+  - type: textarea
+    id: expected-outcome
+    attributes:
+      label: Desired Outcome
+      description: What outcome are you hoping to achieve?
+      placeholder: |
+        Describe what you want to happen:
+        - Specific functionality you want to achieve
+        - End goal of your configuration
+        - Expected behavior
+    validations:
+      required: true
+
+  - type: textarea
+    id: configuration
+    attributes:
+      label: Current Configuration (if applicable)
+      description: Share relevant configuration files or code snippets
+      placeholder: |
+        If your question involves configuration, please share the relevant parts:
+        ```nix
+        # Your flake.nix or configuration.nix snippets
+        ```
+      render: nix
+    validations:
+      required: false
+
+  - type: dropdown
+    id: experience-level
+    attributes:
+      label: Nix Experience Level
+      description: How familiar are you with Nix/NixOS?
+      options:
+        - Beginner (new to Nix)
+        - Intermediate (some Nix experience)
+        - Advanced (experienced with Nix)
+        - Expert (very experienced with Nix)
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: urgency
+    attributes:
+      label: Urgency
+      description: How urgent is this question?
+      options:
+        - label: Low priority (just curious)
+        - label: Medium priority (would like to know soon)
+        - label: High priority (blocking my work)
+        - label: Critical (production issue)
+
+  - type: textarea
+    id: additional-info
+    attributes:
+      label: Additional Information
+      description: Any other information that might be helpful
+      placeholder: |
+        Any additional context, links, or information:
+        - Related documentation you've found
+        - Similar issues you've seen
+        - Specific error messages
+        - Screenshots (if applicable)
+    validations:
+      required: false
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+        
+        ### 📋 What Happens Next?
+        
+        1. **Response**: We'll respond to your question within 24-48 hours
+        2. **Discussion**: We may ask follow-up questions for clarification
+        3. **Solution**: We'll provide guidance, examples, or solutions
+        4. **Documentation**: Good questions may lead to documentation improvements
+        
+        ### 💡 Other Support Channels
+        
+        - 💬 [GitHub Discussions](https://github.com/conneroisu/proton-authenticator-flake/discussions) - Great for open-ended discussions
+        - 📖 [README](https://github.com/conneroisu/proton-authenticator-flake/blob/main/README.md) - Comprehensive documentation
+        - 🛠️ [Contributing Guide](https://github.com/conneroisu/proton-authenticator-flake/blob/main/CONTRIBUTING.md) - For development questions
+        
+        ### 🙏 Thank You!
+        
+        Thank you for asking your question! Questions help us improve documentation and make the flake more user-friendly.

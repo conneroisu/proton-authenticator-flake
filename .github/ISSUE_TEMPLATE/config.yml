@@ -1,0 +1,17 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 💬 GitHub Discussions
+    url: https://github.com/conneroisu/proton-authenticator-flake/discussions
+    about: Ask questions, share ideas, and discuss with the community
+  - name: 🔒 Security Vulnerability
+    url: mailto:connerohnesorge@gmail.com
+    about: Report security vulnerabilities privately via email (DO NOT use public issues)
+  - name: 📧 Direct Contact
+    url: mailto:connerohnesorge@gmail.com
+    about: Contact the maintainer directly for urgent matters
+  - name: 📖 Documentation
+    url: https://github.com/conneroisu/proton-authenticator-flake/blob/main/README.md
+    about: Read the comprehensive documentation and troubleshooting guide
+  - name: 🛠️ Contributing Guide
+    url: https://github.com/conneroisu/proton-authenticator-flake/blob/main/CONTRIBUTING.md
+    about: Learn how to contribute to this project

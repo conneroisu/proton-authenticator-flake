@@ -1,0 +1,154 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  schedule:
+    # Check for updates weekly (Sundays at 02:00 UTC)
+    - cron: '0 2 * * 0'
+
+jobs:
+  check:
+    name: Check Flake
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@main
+        with:
+          logger: pretty
+
+      - name: Setup Nix Cache
+        uses: DeterminateSystems/magic-nix-cache-action@main
+
+      - name: Check flake syntax
+        run: nix flake show --json > /dev/null
+
+      - name: Show flake info
+        run: nix flake show
+
+  build:
+    name: Build Package
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        system: [x86_64-linux]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@main
+        with:
+          logger: pretty
+
+      - name: Setup Nix Cache
+        uses: DeterminateSystems/magic-nix-cache-action@main
+
+      - name: Build package
+        env:
+          NIXPKGS_ALLOW_UNFREE: 1
+        run: |
+          nix build --impure --print-build-logs
+
+      - name: Verify package contents
+        run: |
+          echo "=== Package Structure ==="
+          ls -la result/
+          echo
+          echo "=== Binary Check ==="
+          file result/bin/proton-authenticator
+          file result/bin/.proton-authenticator-wrapped
+          echo
+          echo "=== Desktop Integration ==="
+          ls -la result/share/applications/
+          ls -la result/share/icons/hicolor/*/apps/
+          echo
+          echo "=== Dependencies Check ==="
+          ldd result/bin/.proton-authenticator-wrapped | head -10
+
+      - name: Test development shell
+        env:
+          NIXPKGS_ALLOW_UNFREE: 1
+        run: |
+          nix develop --impure --command echo "Development shell works!"
+
+  security:
+    name: Security Audit
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@main
+        with:
+          logger: pretty
+
+      - name: Setup Nix Cache
+        uses: DeterminateSystems/magic-nix-cache-action@main
+
+      - name: Build package for security audit
+        env:
+          NIXPKGS_ALLOW_UNFREE: 1
+        run: |
+          nix build --impure --print-build-logs
+
+      - name: Check for security vulnerabilities
+        env:
+          NIXPKGS_ALLOW_UNFREE: 1
+        run: |
+          echo "=== Checking package sources ==="
+          nix eval --impure --raw .#packages.x86_64-linux.default.src.url
+          echo
+          echo "=== Verifying hash integrity ==="
+          nix show-derivation result | jq -r '.[].env.src'
+
+      - name: Audit dependencies
+        env:  
+          NIXPKGS_ALLOW_UNFREE: 1
+        run: |
+          echo "=== Dependency tree ==="
+          nix path-info result --closure-size
+          echo
+          echo "=== Runtime dependencies ==="
+          nix path-info result --requisites | head -10
+
+  update-check:
+    name: Check for Updates
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Check Proton Authenticator releases
+        run: |
+          echo "=== Current version in flake ==="
+          grep -n "version.*=" flake.nix
+          echo
+          echo "=== Checking for new releases ==="
+          curl -s https://api.github.com/repos/ProtonMail/proton-authenticator/releases/latest | \
+            jq -r '.tag_name // "No releases found"'
+          echo
+          echo "Note: This is a manual check. Update automation requires manual verification of new releases."
+
+  formatting:
+    name: Check Formatting
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install Nix
+        uses: DeterminateSystems/nix-installer-action@main
+        with:
+          logger: pretty
+
+      - name: Check Nix formatting
+        run: |
+          nix fmt -- --check .
