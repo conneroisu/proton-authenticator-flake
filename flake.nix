@@ -78,7 +78,7 @@
           meta = with pkgs.lib; {
             description = "Proton Authenticator - secure 2FA app";
             homepage = "https://proton.me/support/authenticator";
-            license = licenses.unfree;
+            license = licenses.mit;
             platforms = ["x86_64-linux"];
             maintainers = with maintainers; [connerohnesorge];
           };
