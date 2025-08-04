@@ -31,7 +31,7 @@ jobs:
 
       - name: Build package
         run: |
-          NIXPKGS_ALLOW_UNFREE=1 nix build --impure --print-build-logs
+          nix build --print-build-logs
 
       - name: Generate package information
         id: package-info
@@ -56,7 +56,7 @@ jobs:
           
           ### Quick Install
           \`\`\`bash
-          NIXPKGS_ALLOW_UNFREE=1 nix run --impure github:conneroisu/proton-authenticator-flake
+          nix run github:conneroisu/proton-authenticator-flake
           \`\`\`
           
           ### System Installation
@@ -81,7 +81,6 @@ jobs:
           
           ## Requirements
           - NixOS or Nix package manager
-          - Must allow unfree packages (\`NIXPKGS_ALLOW_UNFREE=1\`)
           - x86_64-linux system
           
           ## Verification

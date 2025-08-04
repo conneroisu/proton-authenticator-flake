@@ -52,7 +52,6 @@ inputs.proton-authenticator.url = "github:conneroisu/proton-authenticator-flake/
 
 # Enable security features
 nixpkgs.config = {
-  allowUnfree = true;
   # Consider additional security hardening
   allowInsecurePredicate = pkg: builtins.elem (lib.getName pkg) [ "proton-authenticator" ];
 };
@@ -132,15 +131,9 @@ We maintain a minimal dependency set:
 
 ## 🚨 Known Security Considerations
 
-### Unfree Software Notice
-Proton Authenticator is proprietary software. While we package it securely, users should be aware:
-- Source code is not available for audit
-- Security depends on Proton's development practices
-- Updates depend on Proton's release schedule
 
 ### System Requirements
 This package requires:
-- `nixpkgs.config.allowUnfree = true`
 - Network access for initial download
 - Desktop environment for GUI functionality
 

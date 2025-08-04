@@ -50,10 +50,8 @@ jobs:
         uses: DeterminateSystems/magic-nix-cache-action@main
 
       - name: Build package
-        env:
-          NIXPKGS_ALLOW_UNFREE: 1
         run: |
-          nix build --impure --print-build-logs
+          nix build --print-build-logs
 
       - name: Verify package contents
         run: |
@@ -72,10 +70,8 @@ jobs:
           ldd result/bin/.proton-authenticator-wrapped | head -10
 
       - name: Test development shell
-        env:
-          NIXPKGS_ALLOW_UNFREE: 1
         run: |
-          nix develop --impure --command echo "Development shell works!"
+          nix develop --command echo "Development shell works!"
 
   security:
     name: Security Audit
@@ -94,17 +90,13 @@ jobs:
         uses: DeterminateSystems/magic-nix-cache-action@main
 
       - name: Build package for security audit
-        env:
-          NIXPKGS_ALLOW_UNFREE: 1
         run: |
-          nix build --impure --print-build-logs
+          nix build --print-build-logs
 
       - name: Check for security vulnerabilities
-        env:
-          NIXPKGS_ALLOW_UNFREE: 1
         run: |
           echo "=== Checking package sources ==="
-          nix eval --impure --raw .#packages.x86_64-linux.default.src.url
+          nix eval --raw .#packages.x86_64-linux.default.src.url
           echo
           echo "=== Verifying hash integrity ==="
           nix show-derivation result | jq -r '.[].env.src'

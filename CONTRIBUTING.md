@@ -22,7 +22,7 @@ Thank you for your interest in contributing! This document provides guidelines f
 4. **Verify Everything Works**
    ```bash
    nix flake check
-   NIXPKGS_ALLOW_UNFREE=1 nix build --impure
+   nix build
    ```
 
 ## 📋 Types of Contributions
@@ -77,7 +77,7 @@ nix flake check --show-trace
 
 #### 2. Build Testing
 ```bash
-NIXPKGS_ALLOW_UNFREE=1 nix build --impure --print-build-logs
+nix build --print-build-logs
 ```
 
 #### 3. Runtime Testing
@@ -157,7 +157,7 @@ ci: add automated security scanning
 
 #### Before Submitting
 - [ ] Run `nix flake check`
-- [ ] Test build with `NIXPKGS_ALLOW_UNFREE=1 nix build --impure`
+- [ ] Test build with `nix build`
 - [ ] Verify application launches correctly
 - [ ] Update documentation if needed
 - [ ] Add tests if applicable

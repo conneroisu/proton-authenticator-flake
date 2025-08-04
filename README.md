@@ -21,14 +21,14 @@ A reliable, well-tested Nix flake for [Proton Authenticator](https://proton.me/s
 
 ### One-liner Installation
 ```bash
-NIXPKGS_ALLOW_UNFREE=1 nix run --impure github:conneroisu/proton-authenticator-flake
+nix run github:conneroisu/proton-authenticator-flake
 ```
 
 ### Build and Test Locally
 ```bash
 git clone https://github.com/conneroisu/proton-authenticator-flake.git
 cd proton-authenticator-flake
-NIXPKGS_ALLOW_UNFREE=1 nix build --impure
+nix build
 ./result/bin/proton-authenticator
 ```
 
@@ -37,7 +37,7 @@ NIXPKGS_ALLOW_UNFREE=1 nix build --impure
 ### Method 1: Direct Run (Recommended for Testing)
 ```bash
 # Run once without installing
-NIXPKGS_ALLOW_UNFREE=1 nix run --impure github:conneroisu/proton-authenticator-flake
+nix run github:conneroisu/proton-authenticator-flake
 ```
 
 ### Method 2: NixOS System Configuration
@@ -57,7 +57,6 @@ Add to your `flake.nix`:
           environment.systemPackages = [
             proton-authenticator.packages.x86_64-linux.default
           ];
-          nixpkgs.config.allowUnfree = true;
         }
       ];
     };
@@ -80,7 +79,6 @@ Add to your `flake.nix`:
           home.packages = [
             proton-authenticator.packages.x86_64-linux.default
           ];
-          nixpkgs.config.allowUnfree = true;
         }
       ];
     };
@@ -91,7 +89,7 @@ Add to your `flake.nix`:
 ### Method 4: Nix Profile
 ```bash
 # Install to your profile
-NIXPKGS_ALLOW_UNFREE=1 nix profile install --impure github:conneroisu/proton-authenticator-flake
+nix profile install github:conneroisu/proton-authenticator-flake
 
 # Remove if needed
 nix profile remove proton-authenticator
@@ -101,7 +99,6 @@ nix profile remove proton-authenticator
 
 - **System**: x86_64-linux (Intel/AMD 64-bit Linux)
 - **Nix**: Flakes support enabled
-- **License**: Must allow unfree packages (`nixpkgs.config.allowUnfree = true`)
 - **Desktop**: Any modern Linux desktop environment (GNOME, KDE, XFCE, etc.)
 
 ### Enable Flakes (if not already enabled)
@@ -130,7 +127,7 @@ nix develop
 nix flake check
 
 # Build and test
-NIXPKGS_ALLOW_UNFREE=1 nix build --impure
+nix build
 
 # Verify package contents
 ls -la result/
@@ -144,7 +141,7 @@ ldd result/bin/.proton-authenticator-wrapped
 | **Package Name** | `proton-authenticator` |
 | **Version** | `1.0.0` |
 | **Source** | Official Proton .deb package |
-| **License** | Unfree (Proton proprietary) |
+| **License** | Free (MIT) |
 | **Closure Size** | ~300MB |
 | **Supported Systems** | x86_64-linux |
 
@@ -180,12 +177,6 @@ We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guid
 
 ### Common Issues
 
-**"unfree license" error**
-```bash
-# Solution: Enable unfree packages
-export NIXPKGS_ALLOW_UNFREE=1
-# Or add to your NixOS config: nixpkgs.config.allowUnfree = true;
-```
 
 **Application won't start**
 ```bash

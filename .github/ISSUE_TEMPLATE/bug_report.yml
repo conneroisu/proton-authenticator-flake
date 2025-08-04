@@ -94,7 +94,7 @@ body:
       label: Build Command Used
       description: The exact command you used to build/run the flake
       placeholder: |
-        NIXPKGS_ALLOW_UNFREE=1 nix build --impure
+        nix build
       render: bash
     validations:
       required: true
@@ -115,7 +115,7 @@ body:
       label: Build Logs
       description: Relevant build logs if this is a build issue
       placeholder: |
-        Run with: NIXPKGS_ALLOW_UNFREE=1 nix build --impure --print-build-logs
+        Run with: nix build --print-build-logs
         Paste relevant logs here...
       render: text
     validations:
@@ -167,7 +167,6 @@ body:
       options:
         - label: Ran `nix flake check` to verify flake integrity
         - label: Tried building with `--rebuild` flag
-        - label: Checked that `NIXPKGS_ALLOW_UNFREE=1` is set
         - label: Verified system meets requirements (x86_64-linux)
         - label: Tested with a fresh git clone
         - label: Checked GitHub Actions for similar failures
