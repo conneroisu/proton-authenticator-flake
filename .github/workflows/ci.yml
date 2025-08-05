@@ -1,14 +1,12 @@
 name: CI
-
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
   schedule:
     # Check for updates weekly (Sundays at 02:00 UTC)
     - cron: '0 2 * * 0'
-
 jobs:
   check:
     name: Check Flake
@@ -16,21 +14,16 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@main
         with:
           logger: pretty
-
       - name: Setup Nix Cache
         uses: DeterminateSystems/magic-nix-cache-action@main
-
       - name: Check flake syntax
         run: nix flake show --json > /dev/null
-
       - name: Show flake info
         run: nix flake show
-
   build:
     name: Build Package
     runs-on: ubuntu-latest
@@ -40,19 +33,15 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@main
         with:
           logger: pretty
-
       - name: Setup Nix Cache
         uses: DeterminateSystems/magic-nix-cache-action@main
-
       - name: Build package
         run: |
           nix build --print-build-logs
-
       - name: Verify package contents
         run: |
           echo "=== Package Structure ==="
@@ -68,11 +57,9 @@ jobs:
           echo
           echo "=== Dependencies Check ==="
           ldd result/bin/.proton-authenticator-wrapped | head -10
-
       - name: Test development shell
         run: |
           nix develop --command echo "Development shell works!"
-
   security:
     name: Security Audit
     runs-on: ubuntu-latest
@@ -80,19 +67,15 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@main
         with:
           logger: pretty
-
       - name: Setup Nix Cache
         uses: DeterminateSystems/magic-nix-cache-action@main
-
       - name: Build package for security audit
         run: |
           nix build --print-build-logs
-
       - name: Check for security vulnerabilities
         run: |
           echo "=== Checking package sources ==="
@@ -100,9 +83,8 @@ jobs:
           echo
           echo "=== Verifying hash integrity ==="
           nix show-derivation result | jq -r '.[].env.src'
-
       - name: Audit dependencies
-        env:  
+        env:
           NIXPKGS_ALLOW_UNFREE: 1
         run: |
           echo "=== Dependency tree ==="
@@ -110,14 +92,12 @@ jobs:
           echo
           echo "=== Runtime dependencies ==="
           nix path-info result --requisites | head -10
-
   update-check:
     name: Check for Updates
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
       - name: Check Proton Authenticator releases
         run: |
           echo "=== Current version in flake ==="
@@ -128,19 +108,16 @@ jobs:
             jq -r '.tag_name // "No releases found"'
           echo
           echo "Note: This is a manual check. Update automation requires manual verification of new releases."
-
   formatting:
     name: Check Formatting
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
       - name: Install Nix
         uses: DeterminateSystems/nix-installer-action@main
         with:
           logger: pretty
-
       - name: Check Nix formatting
-        run: |
+        run: |-
           nix fmt -- --check .

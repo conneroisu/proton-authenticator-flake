@@ -7,12 +7,14 @@ The security of the Proton Authenticator Nix Flake is a top priority. This docum
 ## 🛡️ What We Secure
 
 ### Packaging Security
+
 - **Source Integrity**: We only package official Proton Authenticator releases
 - **Hash Verification**: All source downloads use cryptographic hash verification
 - **Dependency Auditing**: Regular security audits of all dependencies
 - **Build Reproducibility**: Builds are reproducible and verifiable
 
 ### Supply Chain Security
+
 - **Official Sources**: Only download from official Proton distribution channels
 - **Signature Verification**: When available, we verify package signatures
 - **Dependency Pinning**: All dependencies are pinned to specific versions
@@ -22,23 +24,26 @@ The security of the Proton Authenticator Nix Flake is a top priority. This docum
 
 We provide security updates for the following versions:
 
-| Version | Supported          |
+| Version | Supported |
 | ------- | ------------------ |
-| Latest  | ✅ Yes             |
-| < Latest| ❌ No              |
+| Latest | ✅ Yes |
+| < Latest| ❌ No |
 
 **Note**: We track the latest official Proton Authenticator releases. Older versions are not supported.
 
 ## 🔍 Security Measures
 
 ### Automated Security Checks
+
 Our CI/CD pipeline includes:
+
 - **Dependency Scanning**: Automated vulnerability scanning
 - **Source Verification**: Hash integrity checks
 - **Build Security**: Sandboxed builds with minimal privileges
 - **Runtime Verification**: Post-build security validation
 
 ### Manual Security Reviews
+
 - **Code Review**: All changes undergo security-focused code review
 - **Threat Modeling**: Regular assessment of potential attack vectors
 - **Dependency Auditing**: Manual review of all dependencies
@@ -46,6 +51,7 @@ Our CI/CD pipeline includes:
 ## 📋 Security Best Practices for Users
 
 ### Recommended Usage
+
 ```nix
 # Always specify exact versions in production
 inputs.proton-authenticator.url = "github:conneroisu/proton-authenticator-flake/v1.0.0";
@@ -58,6 +64,7 @@ nixpkgs.config = {
 ```
 
 ### Environment Security
+
 - **Desktop Environment**: Use on secure, updated systems only
 - **Network Security**: Ensure secure network connections
 - **System Updates**: Keep NixOS/Nix updated to latest versions
@@ -72,8 +79,8 @@ nixpkgs.config = {
 ### Responsible Disclosure Process
 
 1. **Email**: Send vulnerability details to `connerohnesorge@gmail.com`
-2. **Subject**: Use subject line: `[SECURITY] Proton Authenticator Flake Vulnerability`
-3. **Encryption**: Use GPG encryption if possible (key available on request)
+1. **Subject**: Use subject line: `[SECURITY] Proton Authenticator Flake Vulnerability`
+1. **Encryption**: Use GPG encryption if possible (key available on request)
 
 ### Information to Include
 
@@ -105,12 +112,14 @@ Please provide as much information as possible:
 ### Package Integrity
 
 #### What We Verify
+
 - ✅ SHA256 hashes of all downloaded sources
 - ✅ Official Proton download URLs only
 - ✅ No modifications to upstream binaries
 - ✅ Reproducible build process
 
 #### What We Don't Control
+
 - ❌ Upstream Proton Authenticator security
 - ❌ NixOS/nixpkgs security (but we track advisories)
 - ❌ User system security
@@ -119,33 +128,39 @@ Please provide as much information as possible:
 ### Dependencies
 
 #### Minimal Dependency Policy
+
 We maintain a minimal dependency set:
+
 - **Build Dependencies**: Only essential build tools
 - **Runtime Dependencies**: Only required libraries
 - **No Optional Dependencies**: Avoid unnecessary attack surface
 
 #### Dependency Monitoring
+
 - **Automated Scanning**: Daily vulnerability scans
 - **Manual Review**: Regular dependency audits
 - **Update Policy**: Prompt updates for security issues
 
 ## 🚨 Known Security Considerations
 
-
 ### System Requirements
+
 This package requires:
+
 - Network access for initial download
 - Desktop environment for GUI functionality
 
 ## 📊 Security Metrics
 
 ### Build Security
+
 - **Sandboxed Builds**: ✅ All builds run in Nix sandbox
 - **Reproducible**: ✅ Builds are reproducible
 - **Hash Verified**: ✅ All sources cryptographically verified
 - **Minimal Privileges**: ✅ Build process runs with minimal privileges
 
 ### CI/CD Security
+
 - **Secure Actions**: ✅ Using official, pinned GitHub Actions
 - **Secret Management**: ✅ No secrets used in build process
 - **Automated Scanning**: ✅ Vulnerability scanning enabled
@@ -154,13 +169,16 @@ This package requires:
 ## 🔄 Security Updates
 
 ### Update Policy
+
 - **Critical**: Immediate updates within 24 hours
 - **High**: Updates within 72 hours
 - **Medium**: Updates within 1 week
 - **Low**: Updates in next planned release
 
 ### Notification Channels
+
 Security updates are announced via:
+
 - 📧 GitHub Security Advisories
 - 🏷️ GitHub Releases (tagged as security update)
 - 💬 GitHub Discussions (pinned announcements)
@@ -168,13 +186,17 @@ Security updates are announced via:
 ## 🤝 Security Community
 
 ### Bug Bounty
+
 Currently, we do not offer a bug bounty program, but we:
+
 - Acknowledge all valid reports
 - Credit reporters in security advisories (with permission)
 - Maintain a hall of fame for security contributors
 
 ### Collaboration
+
 We collaborate with:
+
 - NixOS security team
 - Upstream Proton security team (when applicable)
 - Security research community
@@ -182,12 +204,15 @@ We collaborate with:
 ## 📚 Additional Resources
 
 ### Security Documentation
+
 - [NixOS Security](https://nixos.org/manual/nixos/stable/index.html#ch-security)
 - [Nix Security Model](https://nixos.org/guides/nix-pills/nix-store.html)
 - [Proton Security](https://proton.me/security)
 
 ### Security Tools
+
 For security analysis of this flake:
+
 ```bash
 # Audit dependencies
 nix-shell -p nix-audit-tools --run "nix-audit /nix/store/path"
@@ -202,16 +227,19 @@ nix build --rebuild --diff-hook
 ## 📞 Contact Information
 
 ### Security Team
+
 - **Primary Contact**: connerohnesorge@gmail.com
 - **Response Time**: 24-72 hours
 - **GPG Key**: Available on request
 
 ### Non-Security Issues
+
 For non-security issues, please use:
+
 - 🐛 [GitHub Issues](https://github.com/conneroisu/proton-authenticator-flake/issues)
 - 💬 [GitHub Discussions](https://github.com/conneroisu/proton-authenticator-flake/discussions)
 
----
+______________________________________________________________________
 
 **Thank you for helping keep the Proton Authenticator Nix Flake secure!** 🔒
 

@@ -3,15 +3,13 @@ description: Ask a question about using the Proton Authenticator Nix Flake
 title: "[QUESTION] "
 labels: ["question", "needs-triage"]
 assignees: []
-
 body:
   - type: markdown
     attributes:
       value: |
         Have a question about using the Proton Authenticator Nix Flake? We're here to help!
-        
-        **💡 Tip**: Check the [README](https://github.com/conneroisu/proton-authenticator-flake/blob/main/README.md) and [troubleshooting section](https://github.com/conneroisu/proton-authenticator-flake/blob/main/README.md#-troubleshooting) first.
 
+        **💡 Tip**: Check the [README](https://github.com/conneroisu/proton-authenticator-flake/blob/main/README.md) and [troubleshooting section](https://github.com/conneroisu/proton-authenticator-flake/blob/main/README.md#-troubleshooting) first.
   - type: checkboxes
     id: checklist
     attributes:
@@ -26,7 +24,6 @@ body:
           required: true
         - label: This is not a bug report (use the bug report template for bugs)
           required: true
-
   - type: dropdown
     id: question-type
     attributes:
@@ -44,7 +41,6 @@ body:
         - Other
     validations:
       required: true
-
   - type: textarea
     id: question
     attributes:
@@ -52,11 +48,10 @@ body:
       description: What would you like to know?
       placeholder: |
         Please ask your question clearly and provide context.
-        
+
         Example: "How do I install this flake on a NixOS system with Home Manager?"
     validations:
       required: true
-
   - type: textarea
     id: context
     attributes:
@@ -67,11 +62,10 @@ body:
         - What are you trying to accomplish?
         - What approach have you tried?
         - What specific part is confusing?
-        
+
         Example: "I'm new to Nix flakes and trying to add Proton Authenticator to my Home Manager configuration."
     validations:
       required: true
-
   - type: textarea
     id: environment
     attributes:
@@ -82,14 +76,9 @@ body:
         - Nix version: [output of `nix --version`]
         - System: [e.g., x86_64-linux]
         - Desktop Environment: [if relevant]
-      value: |
-        - OS: 
-        - Nix version: 
-        - System: 
-        - Desktop Environment: 
+      value: "- OS: \n- Nix version: \n- System: \n- Desktop Environment: \n"
     validations:
       required: false
-
   - type: textarea
     id: attempted-solutions
     attributes:
@@ -103,7 +92,6 @@ body:
         - Error messages you've encountered
     validations:
       required: false
-
   - type: textarea
     id: expected-outcome
     attributes:
@@ -116,7 +104,6 @@ body:
         - Expected behavior
     validations:
       required: true
-
   - type: textarea
     id: configuration
     attributes:
@@ -130,7 +117,6 @@ body:
       render: nix
     validations:
       required: false
-
   - type: dropdown
     id: experience-level
     attributes:
@@ -143,7 +129,6 @@ body:
         - Expert (very experienced with Nix)
     validations:
       required: false
-
   - type: checkboxes
     id: urgency
     attributes:
@@ -154,7 +139,6 @@ body:
         - label: Medium priority (would like to know soon)
         - label: High priority (blocking my work)
         - label: Critical (production issue)
-
   - type: textarea
     id: additional-info
     attributes:
@@ -168,25 +152,24 @@ body:
         - Screenshots (if applicable)
     validations:
       required: false
-
   - type: markdown
     attributes:
-      value: |
+      value: |-
         ---
-        
+
         ### 📋 What Happens Next?
-        
+
         1. **Response**: We'll respond to your question within 24-48 hours
         2. **Discussion**: We may ask follow-up questions for clarification
         3. **Solution**: We'll provide guidance, examples, or solutions
         4. **Documentation**: Good questions may lead to documentation improvements
-        
+
         ### 💡 Other Support Channels
-        
+
         - 💬 [GitHub Discussions](https://github.com/conneroisu/proton-authenticator-flake/discussions) - Great for open-ended discussions
         - 📖 [README](https://github.com/conneroisu/proton-authenticator-flake/blob/main/README.md) - Comprehensive documentation
         - 🛠️ [Contributing Guide](https://github.com/conneroisu/proton-authenticator-flake/blob/main/CONTRIBUTING.md) - For development questions
-        
+
         ### 🙏 Thank You!
-        
+
         Thank you for asking your question! Questions help us improve documentation and make the flake more user-friendly.

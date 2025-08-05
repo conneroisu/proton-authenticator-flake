@@ -5,21 +5,25 @@ Thank you for your interest in contributing! This document provides guidelines f
 ## 🚀 Quick Start for Contributors
 
 1. **Fork and Clone**
+
    ```bash
    git clone https://github.com/YOUR_USERNAME/proton-authenticator-flake.git
    cd proton-authenticator-flake
    ```
 
-2. **Enter Development Environment**
+1. **Enter Development Environment**
+
    ```bash
    nix develop
    ```
 
-3. **Make Your Changes**
+1. **Make Your Changes**
+
    - Edit the flake.nix or other files
    - Test your changes thoroughly
 
-4. **Verify Everything Works**
+1. **Verify Everything Works**
+
    ```bash
    nix flake check
    nix build
@@ -30,21 +34,25 @@ Thank you for your interest in contributing! This document provides guidelines f
 We welcome several types of contributions:
 
 ### 🐛 Bug Fixes
+
 - Fix build issues
 - Resolve dependency problems
 - Correct documentation errors
 
 ### ✨ Enhancements
+
 - Improve packaging efficiency
 - Add support for new systems
 - Enhance CI/CD workflows
 
 ### 📚 Documentation
+
 - Improve README clarity
 - Add usage examples
 - Update troubleshooting guides
 
 ### 🧪 Testing
+
 - Add test cases
 - Improve CI coverage
 - Validate on different systems
@@ -52,17 +60,21 @@ We welcome several types of contributions:
 ## 🔧 Development Environment
 
 ### Prerequisites
+
 - **Nix** with flakes enabled
 - **Git** for version control
 - **Text editor** of your choice
 
 ### Development Shell
+
 The project includes a development shell with all necessary tools:
+
 ```bash
 nix develop
 ```
 
 This provides:
+
 - `dpkg` - For examining .deb packages
 - `file` - File type identification
 - `patchelf` - ELF binary modification
@@ -71,22 +83,26 @@ This provides:
 ### Testing Your Changes
 
 #### 1. Flake Validation
+
 ```bash
 nix flake check --show-trace
 ```
 
 #### 2. Build Testing
+
 ```bash
 nix build --print-build-logs
 ```
 
 #### 3. Runtime Testing
+
 ```bash
 ./result/bin/proton-authenticator --version
 ldd result/bin/.proton-authenticator-wrapped | grep "not found"
 ```
 
 #### 4. Desktop Integration Testing
+
 ```bash
 ls -la result/share/applications/
 ls -la result/share/icons/hicolor/*/apps/
@@ -96,12 +112,14 @@ file result/share/icons/hicolor/*/apps/*.png
 ## 📝 Coding Standards
 
 ### Nix Code Style
+
 - Use **4 spaces** for indentation (no tabs)
 - Follow [Nix style guide](https://nix.dev/contributing/style-guide)
 - Use meaningful variable names
 - Add comments for complex logic
 
 ### Example Style
+
 ```nix
 {
   # Good: descriptive names and proper indentation
@@ -125,6 +143,7 @@ file result/share/icons/hicolor/*/apps/*.png
 ```
 
 ### Documentation Style
+
 - Use **clear, concise language**
 - Include **code examples** where helpful
 - **Test all examples** before submitting
@@ -133,19 +152,25 @@ file result/share/icons/hicolor/*/apps/*.png
 ## 🔄 Contribution Workflow
 
 ### 1. Issue First (Recommended)
+
 For significant changes, please open an issue first to discuss:
+
 - Proposed changes
 - Implementation approach
 - Potential impact
 
 ### 2. Branch Naming
+
 Use descriptive branch names:
+
 - `fix/build-error-nixos-24-05`
 - `feat/add-aarch64-support`
 - `docs/improve-installation-guide`
 
 ### 3. Commit Messages
+
 Follow [Conventional Commits](https://www.conventionalcommits.org/):
+
 ```
 feat: add support for aarch64-linux systems
 fix: resolve dependency linking issue on NixOS 24.05
@@ -156,6 +181,7 @@ ci: add automated security scanning
 ### 4. Pull Request Process
 
 #### Before Submitting
+
 - [ ] Run `nix flake check`
 - [ ] Test build with `nix build`
 - [ ] Verify application launches correctly
@@ -163,6 +189,7 @@ ci: add automated security scanning
 - [ ] Add tests if applicable
 
 #### PR Description Template
+
 ```markdown
 ## Description
 Brief description of changes
@@ -189,19 +216,24 @@ Brief description of changes
 ## 🧪 Testing Guidelines
 
 ### Required Tests
+
 All contributions must pass:
+
 1. **Flake Check**: `nix flake check`
-2. **Build Test**: Clean build from scratch
-3. **Runtime Test**: Application launches without errors
+1. **Build Test**: Clean build from scratch
+1. **Runtime Test**: Application launches without errors
 
 ### Additional Testing (Encouraged)
+
 - Test on different NixOS versions
 - Verify desktop integration works
 - Check with different desktop environments
 - Validate icon rendering
 
 ### CI/CD Pipeline
+
 Our GitHub Actions will automatically:
+
 - Run flake checks
 - Build the package
 - Verify dependencies
@@ -211,14 +243,17 @@ Our GitHub Actions will automatically:
 ## 🏷️ Release Process
 
 ### Version Bumping
+
 When Proton releases a new version:
+
 1. Update `version` in `flake.nix`
-2. Update `url` with new version number
-3. Update `sha256` hash (run build to get new hash)
-4. Test thoroughly
-5. Update `README.md` if needed
+1. Update `url` with new version number
+1. Update `sha256` hash (run build to get new hash)
+1. Test thoroughly
+1. Update `README.md` if needed
 
 ### Example Version Update
+
 ```nix
 # Before
 version = "1.0.0";
@@ -234,34 +269,41 @@ sha256 = "sha256-NEWHASHERE...";
 ## 🔒 Security Considerations
 
 ### Source Integrity
+
 - Always verify official Proton download URLs
 - Check SHA256 hashes match official releases
 - Never modify binaries or add patches
 
 ### Dependency Management
+
 - Keep dependency list minimal
 - Use official nixpkgs packages only
 - Avoid custom or patched dependencies
 
 ### Security Reporting
+
 For security issues, please:
+
 1. **DO NOT** open a public issue
-2. Email: connerohnesorge@gmail.com
-3. Include detailed description
-4. Allow time for responsible disclosure
+1. Email: connerohnesorge@gmail.com
+1. Include detailed description
+1. Allow time for responsible disclosure
 
 ## 🤝 Community Guidelines
 
 ### Code of Conduct
+
 This project follows the [Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.md). By participating, you agree to uphold this code.
 
 ### Communication
+
 - **Be respectful** and professional
 - **Be patient** with new contributors
 - **Provide constructive feedback**
 - **Ask questions** if something is unclear
 
 ### Getting Help
+
 - 💬 [GitHub Discussions](https://github.com/conneroisu/proton-authenticator-flake/discussions)
 - 🐛 [Issues](https://github.com/conneroisu/proton-authenticator-flake/issues)
 - 📧 [Email](mailto:connerohnesorge@gmail.com)
@@ -269,7 +311,9 @@ This project follows the [Contributor Covenant Code of Conduct](CODE_OF_CONDUCT.
 ## 📋 Maintainer Notes
 
 ### Review Criteria
+
 Pull requests are evaluated on:
+
 - **Functionality**: Does it work as intended?
 - **Security**: No security regressions
 - **Testing**: Adequate test coverage
@@ -277,21 +321,25 @@ Pull requests are evaluated on:
 - **Style**: Follows project conventions
 
 ### Merge Process
+
 1. Automated checks must pass
-2. Manual review by maintainer
-3. Testing on maintainer's system
-4. Merge and tag if this is a release
+1. Manual review by maintainer
+1. Testing on maintainer's system
+1. Merge and tag if this is a release
 
 ## 🎯 Future Roadmap
 
 ### Planned Improvements
+
 - Support for more architectures (aarch64-linux)
 - Automated update checking
 - Better error handling
 - Enhanced desktop integration
 
 ### Ideas Welcome
+
 We're open to suggestions for:
+
 - New features
 - Better packaging approaches
 - Improved user experience
@@ -300,13 +348,14 @@ We're open to suggestions for:
 ## 🙏 Recognition
 
 Contributors will be:
+
 - Listed in release notes
 - Mentioned in README acknowledgments
 - Added to GitHub contributors list
 
 Thank you for helping make Proton Authenticator accessible to the Nix community!
 
----
+______________________________________________________________________
 
 ## Quick Reference
 

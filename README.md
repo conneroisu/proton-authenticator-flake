@@ -20,11 +20,13 @@ A reliable, well-tested Nix flake for [Proton Authenticator](https://proton.me/s
 ## 🚀 Quick Start
 
 ### One-liner Installation
+
 ```bash
 nix run github:conneroisu/proton-authenticator-flake
 ```
 
 ### Build and Test Locally
+
 ```bash
 git clone https://github.com/conneroisu/proton-authenticator-flake.git
 cd proton-authenticator-flake
@@ -35,13 +37,16 @@ nix build
 ## 📖 Installation Methods
 
 ### Method 1: Direct Run (Recommended for Testing)
+
 ```bash
 # Run once without installing
 nix run github:conneroisu/proton-authenticator-flake
 ```
 
 ### Method 2: NixOS System Configuration
+
 Add to your `flake.nix`:
+
 ```nix
 {
   inputs = {
@@ -65,6 +70,7 @@ Add to your `flake.nix`:
 ```
 
 ### Method 3: Home Manager
+
 ```nix
 {
   inputs = {
@@ -87,6 +93,7 @@ Add to your `flake.nix`:
 ```
 
 ### Method 4: Nix Profile
+
 ```bash
 # Install to your profile
 nix profile install github:conneroisu/proton-authenticator-flake
@@ -102,6 +109,7 @@ nix profile remove proton-authenticator
 - **Desktop**: Any modern Linux desktop environment (GNOME, KDE, XFCE, etc.)
 
 ### Enable Flakes (if not already enabled)
+
 ```bash
 # Add to ~/.config/nix/nix.conf or /etc/nix/nix.conf
 experimental-features = nix-command flakes
@@ -110,6 +118,7 @@ experimental-features = nix-command flakes
 ## 🛠️ Development
 
 ### Development Shell
+
 ```bash
 git clone https://github.com/conneroisu/proton-authenticator-flake.git
 cd proton-authenticator-flake
@@ -117,11 +126,13 @@ nix develop
 ```
 
 ### Available Commands in Dev Shell
+
 - `dpkg` - For examining .deb packages
 - `file` - File type identification
 - `patchelf` - ELF binary modification
 
 ### Testing Changes
+
 ```bash
 # Check flake
 nix flake check
@@ -146,6 +157,7 @@ ldd result/bin/.proton-authenticator-wrapped
 | **Supported Systems** | x86_64-linux |
 
 ### What's Included
+
 - 📱 Proton Authenticator binary
 - 🖥️ Desktop integration (`.desktop` file)
 - 🎨 Application icons (32x32, 128x128, 256x256@2)
@@ -167,18 +179,19 @@ This package undergoes comprehensive testing:
 We welcome contributions! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
 
 ### Quick Contribution Guide
+
 1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Test thoroughly with `nix flake check`
-5. Submit a pull request
+1. Create a feature branch
+1. Make your changes
+1. Test thoroughly with `nix flake check`
+1. Submit a pull request
 
 ## 🐛 Troubleshooting
 
 ### Common Issues
 
-
 **Application won't start**
+
 ```bash
 # Check if you have a desktop environment running
 echo $XDG_CURRENT_DESKTOP
@@ -188,12 +201,14 @@ ldd result/bin/.proton-authenticator-wrapped | grep "not found"
 ```
 
 **Build fails with network error**
+
 ```bash
 # Check internet connection and try again
 nix build --impure --rebuild
 ```
 
 ### Getting Help
+
 - 🐛 [Report Issues](https://github.com/conneroisu/proton-authenticator-flake/issues)
 - 💬 [Discussions](https://github.com/conneroisu/proton-authenticator-flake/discussions)
 - 📧 [Contact Maintainer](mailto:connerohnesorge@gmail.com)
@@ -218,7 +233,7 @@ This Nix flake is licensed under the MIT License. See [LICENSE](LICENSE) for det
 - [NixOS](https://nixos.org) community for the excellent ecosystem
 - Contributors and testers who help improve this flake
 
----
+______________________________________________________________________
 
 <div align="center">
 

@@ -3,13 +3,11 @@ description: Suggest a new feature or enhancement for the Proton Authenticator N
 title: "[FEATURE] "
 labels: ["enhancement", "needs-triage"]
 assignees: []
-
 body:
   - type: markdown
     attributes:
       value: |
         Thank you for suggesting a new feature! Please provide as much detail as possible to help us understand your request.
-
   - type: checkboxes
     id: checklist
     attributes:
@@ -22,7 +20,6 @@ body:
           required: true
         - label: I understand that feature implementation depends on maintainer availability
           required: true
-
   - type: textarea
     id: problem
     attributes:
@@ -33,7 +30,6 @@ body:
         Example: "I want to install Proton Authenticator on aarch64-linux systems but it's currently not supported."
     validations:
       required: true
-
   - type: textarea
     id: solution
     attributes:
@@ -44,7 +40,6 @@ body:
         Example: "Add support for aarch64-linux by modifying the flake to handle multiple architectures."
     validations:
       required: true
-
   - type: textarea
     id: alternatives
     attributes:
@@ -55,7 +50,6 @@ body:
         Example: "I considered using the AppImage version, but it doesn't integrate well with NixOS."
     validations:
       required: false
-
   - type: dropdown
     id: feature-type
     attributes:
@@ -73,7 +67,6 @@ body:
         - Other
     validations:
       required: true
-
   - type: dropdown
     id: priority
     attributes:
@@ -86,7 +79,6 @@ body:
         - Critical (Blocking my usage)
     validations:
       required: true
-
   - type: textarea
     id: implementation-ideas
     attributes:
@@ -98,7 +90,6 @@ body:
       render: nix
     validations:
       required: false
-
   - type: textarea
     id: benefits
     attributes:
@@ -111,7 +102,6 @@ body:
         - Community benefit: Better documentation
     validations:
       required: true
-
   - type: textarea
     id: impact
     attributes:
@@ -125,7 +115,6 @@ body:
         - Maintenance burden
     validations:
       required: false
-
   - type: checkboxes
     id: complexity
     attributes:
@@ -136,7 +125,6 @@ body:
         - label: Medium (requires moderate Nix knowledge)
         - label: Complex (requires significant development)
         - label: Unsure (I don't know)
-
   - type: checkboxes
     id: contribution
     attributes:
@@ -148,7 +136,6 @@ body:
         - label: Yes, I can help with documentation
         - label: Yes, I can provide feedback during development
         - label: No, I cannot contribute to implementation
-
   - type: textarea
     id: additional-context
     attributes:
@@ -162,28 +149,27 @@ body:
         - Screenshots or mockups
     validations:
       required: false
-
   - type: markdown
     attributes:
-      value: |
+      value: |-
         ---
-        
+
         ### 📋 What Happens Next?
-        
+
         1. **Triage**: We'll review and label your request within 48 hours
         2. **Discussion**: We may ask for clarification or additional details
         3. **Planning**: If accepted, we'll plan implementation timeline
         4. **Implementation**: Development will begin based on priority and maintainer availability
         5. **Testing**: You may be asked to test the implementation
-        
+
         ### 🎯 Implementation Priority
-        
+
         Features are prioritized based on:
         - Community benefit and demand
         - Implementation complexity
         - Maintainer availability
         - Alignment with project goals
-        
+
         ### 🙏 Thank You!
-        
+
         Thank you for taking the time to suggest this feature. Your ideas help make this flake better for everyone!

@@ -3,15 +3,13 @@ description: Report a bug or issue with the Proton Authenticator Nix Flake
 title: "[BUG] "
 labels: ["bug", "needs-triage"]
 assignees: []
-
 body:
   - type: markdown
     attributes:
       value: |
         Thank you for reporting a bug! Please fill out the information below to help us debug the issue.
-        
-        **🚨 Security Notice**: If this is a security vulnerability, please DO NOT create a public issue. Instead, email connerohnesorge@gmail.com with details.
 
+        **🚨 Security Notice**: If this is a security vulnerability, please DO NOT create a public issue. Instead, email connerohnesorge@gmail.com with details.
   - type: checkboxes
     id: checklist
     attributes:
@@ -24,7 +22,6 @@ body:
           required: true
         - label: This is not a security vulnerability (those should be emailed privately)
           required: true
-
   - type: textarea
     id: description
     attributes:
@@ -33,7 +30,6 @@ body:
       placeholder: Describe the bug you encountered...
     validations:
       required: true
-
   - type: textarea
     id: reproduction
     attributes:
@@ -43,13 +39,9 @@ body:
         1. Run command '...'
         2. See error '...'
         3. Expected behavior: '...'
-      value: |
-        1. 
-        2. 
-        3. 
+      value: "1. \n2. \n3. \n"
     validations:
       required: true
-
   - type: textarea
     id: expected
     attributes:
@@ -58,7 +50,6 @@ body:
       placeholder: Describe what should have happened...
     validations:
       required: true
-
   - type: textarea
     id: actual
     attributes:
@@ -67,7 +58,6 @@ body:
       placeholder: Describe what actually happened...
     validations:
       required: true
-
   - type: textarea
     id: environment
     attributes:
@@ -79,15 +69,9 @@ body:
         - System: [e.g., x86_64-linux, aarch64-linux]
         - Desktop Environment: [e.g., GNOME, KDE, XFCE]
         - Proton Authenticator version: [from flake]
-      value: |
-        - OS: 
-        - Nix version: 
-        - System: 
-        - Desktop Environment: 
-        - Proton Authenticator version: 
+      value: "- OS: \n- Nix version: \n- System: \n- Desktop Environment: \n- Proton Authenticator version: \n"
     validations:
       required: true
-
   - type: textarea
     id: build-command
     attributes:
@@ -98,7 +82,6 @@ body:
       render: bash
     validations:
       required: true
-
   - type: textarea
     id: error-output
     attributes:
@@ -108,7 +91,6 @@ body:
       render: text
     validations:
       required: false
-
   - type: textarea
     id: build-logs
     attributes:
@@ -120,7 +102,6 @@ body:
       render: text
     validations:
       required: false
-
   - type: dropdown
     id: bug-type
     attributes:
@@ -136,7 +117,6 @@ body:
         - Other
     validations:
       required: true
-
   - type: dropdown
     id: severity
     attributes:
@@ -149,7 +129,6 @@ body:
         - Low (Minor issue or inconvenience)
     validations:
       required: true
-
   - type: textarea
     id: additional-context
     attributes:
@@ -158,7 +137,6 @@ body:
       placeholder: Any additional information that might help...
     validations:
       required: false
-
   - type: checkboxes
     id: troubleshooting
     attributes:
@@ -171,19 +149,18 @@ body:
         - label: Tested with a fresh git clone
         - label: Checked GitHub Actions for similar failures
         - label: Searched existing issues and discussions
-
   - type: markdown
     attributes:
-      value: |
+      value: |-
         ---
-        
+
         ### 📋 What Happens Next?
-        
+
         1. **Triage**: We'll review and label your issue within 48 hours
         2. **Investigation**: We'll attempt to reproduce the issue
         3. **Resolution**: We'll work on a fix or provide a workaround
         4. **Testing**: You may be asked to test proposed solutions
-        
+
         ### 🙏 Thank You!
-        
+
         Thank you for taking the time to report this issue. Your feedback helps improve the flake for everyone!
